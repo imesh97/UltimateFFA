@@ -12,6 +12,7 @@ public class FFAPlayer {
 
     Home plugin;
     FileManager fm;
+    ConfigYML cfg;
 
     private final FileManager.Config file;
     private final Player player;
@@ -22,10 +23,12 @@ public class FFAPlayer {
     private int assists;
     private double kdr;
     private double kda;
+    private int elo;
 
     public FFAPlayer(Player player){
 
         fm = new FileManager(plugin);
+        cfg = new ConfigYML(plugin);
 
         this.file = fm.getConfig("data.yml");
         this.player = player;
@@ -41,6 +44,7 @@ public class FFAPlayer {
             this.deaths = this.file.get().getInt(path + "assists");
             this.kda = this.file.get().getDouble(path + "kda");
             this.kdr = this.file.get().getDouble(path + "kdr");
+            this.elo = this.file.get().getInt(path + "elo");
 
             return;
 
@@ -53,6 +57,7 @@ public class FFAPlayer {
             this.assists = 0;
             this.kda = 0.0;
             this.kdr = 0.0;
+            this.elo = cfg.defaultELO();
 
         }
 
@@ -151,6 +156,18 @@ public class FFAPlayer {
     public ItemStack[] getArmor(){
 
         return this.getPlayer().getInventory().getArmorContents();
+
+    }
+
+    public int getELO(){
+
+        return this.elo;
+
+    }
+
+    public void setELO(int i){
+
+        this.elo = i;
 
     }
 

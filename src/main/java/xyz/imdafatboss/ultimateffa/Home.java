@@ -4,8 +4,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.imdafatboss.ultimateffa.config.*;
+import xyz.imdafatboss.ultimateffa.events.GappleDropListener;
 import xyz.imdafatboss.ultimateffa.player.FFAPlayer;
 import xyz.imdafatboss.ultimateffa.player.PlayerManager;
 
@@ -14,10 +16,15 @@ import java.util.UUID;
 public class Home extends JavaPlugin implements Listener{
 
     FileManager fm = new FileManager(this);
+    GappleDropListener gappleDropListener;
 
     @Override
     public void onEnable(){
 
+        PluginManager pm;
+        this.gappleDropListener = new GappleDropListener(this);
+
+        pm = Bukkit.getServer().getPluginManager();
         this.getLogger().info("Created by imdafatboss");
         fm.getConfig("config.yml").saveDefaultConfig();
         fm.getConfig("data.yml").saveDefaultConfig();
@@ -27,6 +34,8 @@ public class Home extends JavaPlugin implements Listener{
             newFFAPlayer(player);
 
         }
+
+        pm.registerEvents(this.gappleDropListener, this);
 
     }
 

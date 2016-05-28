@@ -1,6 +1,7 @@
 package xyz.imdafatboss.ultimateffa.arena;
 
 import org.bukkit.Location;
+import org.bukkit.World;
 import xyz.imdafatboss.ultimateffa.Home;
 import xyz.imdafatboss.ultimateffa.config.*;
 import xyz.imdafatboss.ultimateffa.player.*;
@@ -76,6 +77,18 @@ public class ArenaManager {
     public boolean hasStarted(){
 
         return arena.started;
+
+    }
+
+    public World getWorld(){
+
+        return arena.world;
+
+    }
+
+    public void setWorld(World world){
+
+        arena.world = world;
 
     }
 
