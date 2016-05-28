@@ -1,6 +1,8 @@
 package xyz.imdafatboss.ultimateffa.player;
 
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import xyz.imdafatboss.ultimateffa.Home;
 import xyz.imdafatboss.ultimateffa.config.*;
 
@@ -137,6 +139,18 @@ public class FFAPlayer {
     public void setKDR(double i){
 
         this.kdr = i;
+
+    }
+
+    public Inventory getInventory(){
+
+        return this.getPlayer().getInventory();
+
+    }
+
+    public ItemStack[] getArmor(){
+
+        return this.getPlayer().getInventory().getArmorContents();
 
     }
 
