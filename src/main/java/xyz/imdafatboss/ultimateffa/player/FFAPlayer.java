@@ -171,4 +171,36 @@ public class FFAPlayer {
 
     }
 
+    public void clearInventory(){
+
+        this.getPlayer().getInventory().clear();
+
+    }
+
+    public void clearArmor(){
+
+        this.getPlayer().getInventory().setHelmet(null);
+        this.getPlayer().getInventory().setChestplate(null);
+        this.getPlayer().getInventory().setLeggings(null);
+        this.getPlayer().getInventory().setBoots(null);
+
+    }
+
+    public void giveInventory(Inventory inv){
+
+        for(int i = 0; i < inv.getSize(); i++){
+
+            ItemStack is = inv.getItem(i);
+            this.getPlayer().getInventory().addItem(is);
+
+        }
+
+    }
+
+    public void giveArmor(ItemStack[] newArmor){
+
+        this.getPlayer().getInventory().setArmorContents(newArmor);
+
+    }
+
 }
